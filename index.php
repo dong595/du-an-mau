@@ -141,7 +141,8 @@ if(isset($_GET['act'])&&($_GET['act'] !="")){
             break;
             case "remove":
                if(isset($_GET['code'])){
-                array_slice($_SESSION['myCart'],$_GET['code'],1);
+                 array_splice($_SESSION['myCart'],$_GET['code'],1,[]);
+                    // print_r(array_slice($_SESSION['myCart'],$_GET['code'],0));echo "</pre>";die;
                }else{
                 $_SESSION['myCart'] =[];
                }
@@ -153,6 +154,24 @@ if(isset($_GET['act'])&&($_GET['act'] !="")){
             
             include './view/cart/bill.php';
             
+            break;
+        case 'billConfirm':
+            if(isset($_POST['acp'])&&($_POST['acp'])){
+                $billName = $_POST['userName'];
+                $billAddress = $_POST['userAddress'];
+                $billEmail = $_POST['userEmail'];
+                $billPhone = $_POST['userPhone'];
+                $billTotal = totalOrder();
+                $billPaymentMethods = $_POST['pttt'];
+                $orderDate = date('h:i:sa d/m/Y');
+                $idBill = insert_bill($billName,$billAddress,$billEmail,$billPhone,$billTotal,$billPaymentMethods,$orderDate);
+                foreach ($_SESSION['myCart'] as $cart ) {
+                insert_cart($_SESSION['user']['userId'],$cart[0],$cart[1],$cart[2],$cart[3],$cart[4],$cart[5],$idBill);
+               }
+               $_SESSION['cart']= [];
+            }
+            $listBill = loadOne_bill($idBill);
+            include './view/cart/billConfirm.php';
             break;
         case 'logOut':
             include './view/user/logOut.php';

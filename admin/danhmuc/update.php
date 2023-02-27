@@ -8,14 +8,14 @@
         <h1>CẬP NHẬT HÀNG HÓA</h1>
     </div>
     <div class="row frmcontent">
-        <form action="index.php?act=updatedm" method="post">
+        <form name="myForm" onsubmit="return validateForm()" action="index.php?act=updatedm" method="post">
             <div class="row mb10">
                 Mã loại <br />
                 <input type="text" value="<?=$id?>" name="maloai" disabled />
             </div>
             <div class="row mb10">
                 Tên loại <br />
-                <input required="[A-z]{255}" type="text" name="tenloai" value="<?php if (isset($categoryName) && ($categoryName != ""))
+                <input type="text" name="tenloai" value="<?php if (isset($categoryName) && ($categoryName != ""))
                         echo $categoryName;?>" />
             </div>
             <div class="row mb10">
@@ -29,5 +29,19 @@
                 if(isset($thongbao)&&($thongbao != " ")) echo $thongbao;
              ?>
         </form>
+        <script>
+        function validateForm() {
+            let maloai = document.forms["myForm"]["maloai"].value;
+            let tenloai = document.forms["myForm"]["tenloai"].value;
+            if (maloai == "") {
+                alert("Vui lòng nhập tên mã loại");
+                return false;
+            }
+            if (tenloai == "") {
+                alert("Vui lòng nhập tên danh mục muốn cập nhật");
+                return false;
+            }
+        }
+        </script>
     </div>
 </div>

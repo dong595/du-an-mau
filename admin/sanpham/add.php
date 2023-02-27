@@ -3,7 +3,8 @@
         <h1>THÊM MỚI SẢN PHẨM</h1>
     </div>
     <div class="row frmcontent">
-        <form action="index.php?act=addsp" method="post" enctype="multipart/form-data">
+        <form name="myForm" onsubmit="return validateForm()" action="index.php?act=addsp" method="post"
+            enctype="multipart/form-data">
             <div class="row mb10">
                 Danh mục <br />
                 <select name="iddm" id="">
@@ -16,15 +17,15 @@
             </div>
             <div class="row mb10">
                 Tên sản phẩm <br />
-                <input required="[A-z]{255}" type="text" name="tensp" />
+                <input type="text" name="tensp" />
             </div>
             <div class="row mb10">
                 Giá <br />
-                <input required="[A-z]{255}" type="text" name="giasp" />
+                <input type="text" name="giasp" />
             </div>
             <div class="row mb10">
                 Hình ảnh <br />
-                <input required="[A-z]{255}" type="file" name="anhsp" />
+                <input type="file" name="anhsp" />
             </div>
             <div class="row mb10">
                 Mô tả <br />
@@ -43,5 +44,29 @@
                 if(isset($thongbao)&&($thongbao != " ")) echo $thongbao;
              ?>
         </form>
+        <script>
+        function validateForm() {
+            let tensp = document.forms["myForm"]["tensp"].value;
+            let giasp = document.forms["myForm"]["giasp"].value;
+            let descsp = document.forms["myForm"]["descsp"].value;
+            let anhsp = document.forms["myForm"]["anhsp"].value;
+            if (tensp == "") {
+                alert("Vui lòng nhập tên sản phẩm");
+                return false;
+            }
+            if (giasp == "") {
+                alert("Vui lòng nhập giá sản phẩm");
+                return false;
+            }
+            if (descsp == "") {
+                alert("Vui lòng nhập mô tả về sản phẩm");
+                return false;
+            }
+            if (anhsp == "") {
+                alert("Vui lòng tải ảnh sản phẩm lên");
+                return false;
+            }
+        }
+        </script>
     </div>
 </div>

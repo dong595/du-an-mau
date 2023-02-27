@@ -103,7 +103,7 @@
                         </a>
                     </div>
                     <div class="boxsp-form">
-                        <form action="index.php?act=addToCart&&Code=<?php echo $nProduct['id']?>" method="post">
+                        <form action="index.php?act=addToCart&Code=<?php echo $nProduct['id']?>" method="post">
                             <input type="hidden" name="id" value="<?php echo $nProduct['id']?>">
                             <input type="hidden" name="tensp" value="<?php echo $nProduct['productName']?>">
                             <input type="hidden" name="anhsp" value="<?php echo $nProduct['productImage']?>">

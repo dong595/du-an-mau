@@ -14,7 +14,8 @@
         <h1>CẬP NHẬT HÀNG HÓA</h1>
     </div>
     <div class="row frmcontent">
-        <form action="index.php?act=updatesp" method="post" enctype="multipart/form-data">
+        <form name="myForm" onsubmit="return validateForm()" action="index.php?act=updatesp" method="post"
+            enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?=$id?>">
             <div class="row mb10">
                 <select name="iddm" id="">
@@ -28,11 +29,11 @@
             </div>
             <div class="row mb10">
                 Tên sản phẩm <br />
-                <input required="[A-z]{255}" type="text" name="tensp" value="<?=$productName?>" />
+                <input type="text" name="tensp" value="<?=$productName?>" />
             </div>
             <div class="row mb10">
                 Giá <br />
-                <input required="[A-z]{255}" type="text" name="giasp" value="<?=$productPrice?>" />
+                <input type="text" name="giasp" value="<?=$productPrice?>" />
             </div>
             <div class="row mb10">
                 Hình ảnh <br />
@@ -45,7 +46,7 @@
             </div>
             <div class="row mb10">
                 Lượt xem <br />
-                <input disabled required="[A-z]{255}" type="text" name="viewsp" />
+                <input disabled type="text" name="viewsp" />
             </div>
             <div class="row mb10">
 
@@ -57,5 +58,29 @@
                 if(isset($thongbao)&&($thongbao != " ")) echo $thongbao;
              ?>
         </form>
+        <script>
+        function validateForm() {
+            let tensp = document.forms["myForm"]["tensp"].value;
+            let giasp = document.forms["myForm"]["giasp"].value;
+            let descsp = document.forms["myForm"]["descsp"].value;
+            let anhsp = document.forms["myForm"]["anhsp"].value;
+            if (tensp == "") {
+                alert("Vui lòng nhập tên sản phẩm muốn cập nhật");
+                return false;
+            }
+            if (giasp == "") {
+                alert("Vui lòng nhập giá sản phẩm muốn cập nhật");
+                return false;
+            }
+            if (descsp == "") {
+                alert("Vui lòng nhập mô tả về sản phẩm muốn cập nhật");
+                return false;
+            }
+            if (anhsp == "") {
+                alert("Vui lòng tải ảnh sản phẩm muốn cập nhật");
+                return false;
+            }
+        }
+        </script>
     </div>
 </div>

@@ -20,7 +20,7 @@
         $productList = pdo_query($sql);
         return $productList;
     }
-    function loadALL_sanpham($kyw="",$iddm=0){
+    function loadALL_sanpham($kyw,$iddm){
         $sql = "SELECT * FROM products where 1";
         if($kyw !=""){
         $sql.=" and productName like '%". $kyw."%'";

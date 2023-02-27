@@ -3,14 +3,14 @@
         <h1>THÊM MỚI LOẠI HÀNG HÓA</h1>
     </div>
     <div class="row frmcontent">
-        <form action="index.php?act=adddm" method="post">
+        <form name="myForm" action="index.php?act=adddm" onsubmit="return validateForm()" method="post">
             <div class="row mb10">
                 Mã loại <br />
                 <input type="text" name="maloai" disabled />
             </div>
             <div class="row mb10">
                 Tên loại <br />
-                <input required="[A-z]{255}" type="text" name="tenloai" />
+                <input type="text" name="tenloai" />
             </div>
             <div class="row mb10">
                 <input type="submit" name="themmoi" value="Thêm mới" />
@@ -21,5 +21,14 @@
                 if(isset($thongbao)&&($thongbao != " ")) echo $thongbao;
              ?>
         </form>
+        <script>
+        function validateForm() {
+            let tenloai = document.forms["myForm"]["tenloai"].value;
+            if (tenloai == "") {
+                alert("Vui lòng nhập tên danh mục");
+                return false;
+            }
+        }
+        </script>
     </div>
 </div>

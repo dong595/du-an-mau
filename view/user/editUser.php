@@ -9,7 +9,7 @@
                     extract($_SESSION['user']);
                 }
             ?>
-                <form action="index.php?act=editUser" method="post">
+                <form name="myForm" onsubmit="return validateForm()" action="index.php?act=editUser" method="post">
 
                     <input value="<?=$userName?>" type="text" name="user"><br>
                     <input value="<?=$userEmail?>" type="email" name="email"><br>
@@ -20,12 +20,46 @@
                     <input type="submit" name="editUser" value="CẬP NHẬT">
                     <input type="reset" value="NHẬP LẠI">
                 </form>
+
                 <h2> <?php if(isset($thongbao) && ($thongbao !="")){
                     
                     echo $thongbao;
                     }?></h2>
             </div>
-
+            <script>
+            function validateForm() {
+                let user = document.forms["myForm"]["user"].value;
+                let email = document.forms["myForm"]["email"].value;
+                let pasword = document.forms["myForm"]["pasword"].value;
+                let address = document.forms["myForm"]["address"].value;
+                let phone = document.forms["myForm"]["phone"].value;
+                let role = document.forms["myForm"]["role"].value;
+                if (user == "") {
+                    alert("Vui lòng nhập tên user muốn cập nhật");
+                    return false;
+                }
+                if (email == "") {
+                    alert("Vui lòng nhập email muốn cập nhật");
+                    return false;
+                }
+                if (pasword == "") {
+                    alert("Vui lòng nhập mật khẩu muốn cập nhật");
+                    return false;
+                }
+                if (address == "") {
+                    alert("Vui lòng nhập địa chỉ muốn cập nhật");
+                    return false;
+                }
+                if (phone == "") {
+                    alert("Vui lòng nhập số điện thoại muốn cập nhật");
+                    return false;
+                }
+                if (role == "") {
+                    alert("không để trống trường này");
+                    return false;
+                }
+            }
+            </script>
         </div>
 
     </div>
